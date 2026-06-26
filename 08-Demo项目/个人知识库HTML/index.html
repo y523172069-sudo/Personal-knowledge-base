@@ -20,6 +20,7 @@
         <nav class="nav" aria-label="主导航">
           <button class="nav-item active" data-view="overview">总览</button>
           <button class="nav-item" data-view="timeline">轮岗时间线</button>
+          <button class="nav-item" data-view="projects">项目案例</button>
           <button class="nav-item" data-view="workflow">沉淀链路</button>
           <button class="nav-item" data-view="abilities">能力地图</button>
           <button class="nav-item" data-view="evidence">证据索引</button>
@@ -116,6 +117,25 @@
               </article>
             </div>
           </section>
+        </section>
+
+        <section id="projects" class="view">
+          <div class="toolbar">
+            <select id="projectUseFilter">
+              <option value="all">全部使用场景</option>
+              <option value="主简历">主简历</option>
+              <option value="述职">述职</option>
+              <option value="面试复盘">面试复盘</option>
+              <option value="Demo素材">Demo 素材</option>
+            </select>
+            <select id="projectRiskFilter">
+              <option value="all">全部证据状态</option>
+              <option value="可讲">可讲</option>
+              <option value="待补">待补</option>
+              <option value="敏感">敏感</option>
+            </select>
+          </div>
+          <div id="projectBoard" class="project-board"></div>
         </section>
 
         <section id="workflow" class="view">

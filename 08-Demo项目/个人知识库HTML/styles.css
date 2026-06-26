@@ -327,6 +327,7 @@ select,
 }
 
 .case-list,
+.project-board,
 .ability-grid,
 .resume-grid,
 .demo-grid {
@@ -335,6 +336,7 @@ select,
 }
 
 .case-item,
+.project-card,
 .flow-step,
 .table-row {
   border: 1px solid var(--line);
@@ -345,6 +347,7 @@ select,
 }
 
 .case-item:hover,
+.project-card:hover,
 .ability-card:hover,
 .resume-card:hover,
 .demo-card:hover,
@@ -354,10 +357,37 @@ select,
 }
 
 .case-item h4,
+.project-card h4,
 .ability-card h4,
 .resume-card h4,
 .demo-card h4 {
   margin: 0 0 8px;
+}
+
+.project-board {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+  background: #fff;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.project-card .case-path {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.case-path span {
+  border-radius: 12px;
+  padding: 9px;
+  background: #f6f8fd;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .gap-list {
@@ -627,6 +657,7 @@ select,
   .app-shell,
   .two-col,
   .hero-card,
+  .project-board,
   .ability-grid,
   .resume-grid,
   .demo-grid,

@@ -62,6 +62,74 @@ const data = {
       risk: "需要服务最终简历和 Demo 成品化"
     }
   ],
+  projectCases: [
+    {
+      title: "小联盟资质认证调研",
+      type: "产品调研 / 规则设计",
+      use: ["主简历", "述职", "Demo素材"],
+      risk: "待补",
+      problem: "客户优势认证材料门槛高，审核分类和证明标准需要更清晰。",
+      action: "独立完成行业调研，重构业务优势分类和审核材料标准。",
+      result: "形成 7 个一级类别、35 个二级类别；空运方案获认可，最终上线待确认。",
+      evidence: ["E-001"],
+      demo: "企业服务能力认证工作台"
+    },
+    {
+      title: "3 项 Jira 产品优化需求",
+      type: "需求撰写 / 项目推进",
+      use: ["主简历", "述职"],
+      risk: "待补",
+      problem: "权益、评价入口和审批通知等小型需求需要转化为研发可理解任务。",
+      action: "学习业务流程并完成需求整理、范围表达和 Jira 填报。",
+      result: "2 项 P0 通过评审进入开发，1 项 P1 在需求池；验收上线待补。",
+      evidence: ["E-002"],
+      demo: "真需求与最小试点工作台"
+    },
+    {
+      title: "AI 风控官内部使用分析",
+      type: "数据分析 / AI 产品调研",
+      use: ["主简历", "述职", "Demo素材"],
+      risk: "敏感",
+      problem: "内部 AI 工具有使用日志和反馈，但需要识别高价值用户和真实问题。",
+      action: "使用 AI 辅助整理 759 条记录，分析用户、部门、问题和反馈；现场记录调研会议。",
+      result: "形成使用分析和会议纪要；对外只能使用区间或合成数据。",
+      evidence: ["E-003", "E-004"],
+      demo: "AI 产品使用与反馈分析看板"
+    },
+    {
+      title: "会员产品升级需求定性调研",
+      type: "用户研究 / B2B 产品",
+      use: ["主简历", "述职"],
+      risk: "待补",
+      problem: "会员权益升级中，哪些需求真正影响客户价值感知仍需判断。",
+      action: "基于 3 个销售访谈 Case 做结构化编码和跨案例分析。",
+      result: "输出国内 / 海外差异、核心洞察和产品机会优先级；采纳结果待补。",
+      evidence: ["E-008"],
+      demo: "管培生成长证据库"
+    },
+    {
+      title: "商学院云课堂方案",
+      type: "产品构想 / 会议资源复用",
+      use: ["述职", "面试复盘", "Demo素材"],
+      risk: "待补",
+      problem: "会议和培训内容难以复用，会员价值感知和续费影响难验证。",
+      action: "独立完成问题分析、云课堂方案和效果指标，并补充会议 SOP / 峰会流程复盘。",
+      result: "同批课题排名第 2；方案未落地，评分和评价待补。",
+      evidence: ["E-005", "E-010"],
+      demo: "课程试点运营台"
+    },
+    {
+      title: "海外销售开发信组合",
+      type: "销售支持 / 客户沟通",
+      use: ["面试复盘"],
+      risk: "可讲",
+      problem: "海外客户开发依赖人工邮件，需要包装客户价值并筛选有效意向。",
+      action: "独立完成印度客户开发、支付工具跟进和美国会议邀约文案，并通过主管审核。",
+      result: "发送 250 封，回复 150 封，有效意向 1 个；适合复盘客户筛选问题。",
+      evidence: ["E-011"],
+      demo: "海外销售线索跟进台"
+    }
+  ],
   abilities: [
     {
       name: "需求发现与问题分析",
@@ -272,6 +340,32 @@ function renderTimeline() {
     `).join("");
 }
 
+function renderProjects() {
+  const useFilter = $("#projectUseFilter")?.value || "all";
+  const riskFilter = $("#projectRiskFilter")?.value || "all";
+  const items = data.projectCases
+    .filter(includesSearch)
+    .filter((item) => useFilter === "all" || item.use.includes(useFilter))
+    .filter((item) => riskFilter === "all" || item.risk === riskFilter);
+
+  $("#projectBoard").innerHTML = items.map((item) => `
+    <article class="project-card" data-detail='${encodeURIComponent(JSON.stringify({ type: "项目案例", ...item }))}'>
+      <h4>${item.title}</h4>
+      <div class="card-meta">
+        <span class="pill">${item.type}</span>
+        <span class="pill ${item.risk === "可讲" ? "strong" : item.risk === "敏感" ? "weak" : "medium"}">${item.risk}</span>
+        ${item.evidence.map((tag) => `<span class="pill">${tag}</span>`).join("")}
+      </div>
+      <p class="muted">${item.problem}</p>
+      <div class="case-path">
+        <span><strong>行动</strong><br>${item.action}</span>
+        <span><strong>结果</strong><br>${item.result}</span>
+        <span><strong>Demo</strong><br>${item.demo}</span>
+      </div>
+    </article>
+  `).join("");
+}
+
 function renderAbilities() {
   const level = $("#abilityLevelFilter")?.value || "all";
   const strength = $("#strengthFilter")?.value || "all";
@@ -360,6 +454,7 @@ function renderAll() {
   renderStats();
   renderOverview();
   renderTimeline();
+  renderProjects();
   renderWorkflow();
   renderAbilities();
   renderEvidence();
@@ -408,11 +503,14 @@ const labelMap = {
   solution: "Demo 方案",
   source: "数据来源",
   priority: "优先级",
-  period: "时间",
   stage: "轮岗阶段",
   focus: "阶段重点",
   outputs: "阶段产出",
-  risk: "证据缺口 / 风险"
+  risk: "证据状态 / 风险",
+  type: "案例类型",
+  use: "使用场景",
+  problem: "问题背景",
+  demo: "关联 Demo"
 };
 
 function setView(view) {
@@ -422,6 +520,7 @@ function setView(view) {
   const titles = {
     overview: "总览",
     timeline: "轮岗时间线",
+    projects: "项目案例",
     workflow: "沉淀链路",
     abilities: "能力地图",
     evidence: "证据索引",
@@ -457,7 +556,7 @@ function bindEvents() {
     renderAll();
   });
 
-  ["abilityLevelFilter", "strengthFilter", "evidenceStatusFilter", "resumeMaturityFilter", "demoPriorityFilter"].forEach((id) => {
+  ["projectUseFilter", "projectRiskFilter", "abilityLevelFilter", "strengthFilter", "evidenceStatusFilter", "resumeMaturityFilter", "demoPriorityFilter"].forEach((id) => {
     const node = $(`#${id}`);
     if (node) node.addEventListener("change", renderAll);
   });
