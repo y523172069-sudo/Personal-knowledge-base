@@ -77,6 +77,12 @@ textarea {
   font-size: 18px;
 }
 
+.version-label {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .eyebrow {
   margin: 0 0 6px;
   font-size: 12px;
@@ -193,6 +199,25 @@ select,
 
 .secondary-btn:hover {
   border-color: #bdc8dd;
+}
+
+.secondary-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+
+.secondary-link:hover {
+  border-color: #bdc8dd;
+  color: var(--primary);
 }
 
 .view {

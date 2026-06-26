@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管培生成长知识库 Demo｜内部汇报版</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">KB</div>
+          <div>
+            <p class="eyebrow">Management Trainee Knowledge Base</p>
+            <h1>管培生成长知识库</h1>
+            <p class="version-label">内部汇报版｜轮岗学习沉淀</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="主导航">
+          <button class="nav-item active" data-view="overview">总览</button>
+          <button class="nav-item" data-view="timeline">轮岗时间线</button>
+          <button class="nav-item" data-view="projects">项目案例</button>
+          <button class="nav-item" data-view="workflow">沉淀链路</button>
+          <button class="nav-item" data-view="abilities">能力地图</button>
+          <button class="nav-item" data-view="evidence">证据索引</button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="dot"></span>
+          <p>本页仅使用脱敏摘要，不展示客户、员工、内部系统原始材料。</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">2026 管培生轮岗学习与项目沉淀</p>
+            <h2 id="viewTitle">总览</h2>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-wrap">
+              <span>⌕</span>
+              <input id="globalSearch" type="search" placeholder="搜索能力、案例、证据…" />
+            </div>
+            <button id="exportSummary" class="secondary-btn">生成汇报摘要</button>
+          </div>
+        </header>
+
+        <section id="overview" class="view active">
+          <div class="hero-card">
+            <div>
+              <p class="eyebrow">定位</p>
+              <h3>把轮岗经历转化为个人学习心得、业务理解和成长沉淀。</h3>
+              <p class="muted">
+                当前页面用于展示管培生在会议、销售、客成、产品与后续轮岗中的学习沉淀，
+                重点呈现每个阶段接触了什么、理解了什么、形成了哪些思考，以及如何在共创中成长。
+              </p>
+            </div>
+            <div class="hero-meter">
+              <div class="meter-ring">
+                <span id="readinessScore">72</span>
+                <small>沉淀完整度</small>
+              </div>
+              <p>重点沉淀个人观察、方法意识、协作体验和阶段性思考。</p>
+            </div>
+          </div>
+
+          <div class="stats-grid" id="statsGrid"></div>
+
+          <div class="two-col">
+            <section class="panel">
+              <div class="panel-head">
+                <h3>当前重点案例</h3>
+                <span class="tag">阶段汇报可用</span>
+              </div>
+              <div id="focusCases" class="case-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>个人学习心得与思考汇总</h3>
+                <span class="tag warn">阶段性沉淀</span>
+              </div>
+              <ul id="gapList" class="gap-list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section id="timeline" class="view">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>轮岗时间线</h3>
+              <span class="tag">2026-03 至 2026-08</span>
+            </div>
+            <div id="timelineTrack" class="timeline-track"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>阶段判断</h3>
+              <span class="tag warn">用于后续轮岗复盘</span>
+            </div>
+            <div class="strategy-grid">
+              <article>
+                <h4>3 月：进入组织与会议业务</h4>
+                <p>从人力行政和会议部门开始，理解公司如何识别人才、组织会议、触达客户。</p>
+              </article>
+              <article>
+                <h4>4-5 月：靠近客户与服务现场</h4>
+                <p>通过销售和客户成功轮岗，理解客户触达、客户维护和服务价值感知。</p>
+              </article>
+              <article>
+                <h4>6 月：形成产品与需求视角</h4>
+                <p>通过调研、Jira 需求和 AI 产品分析，开始从任务执行转向问题判断。</p>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="projects" class="view">
+          <div class="toolbar">
+            <select id="projectRiskFilter">
+              <option value="all">全部成长主题</option>
+              <option value="共创">共创</option>
+              <option value="成长">成长</option>
+              <option value="思考">思考</option>
+            </select>
+          </div>
+          <div id="projectBoard" class="project-board"></div>
+        </section>
+
+        <section id="workflow" class="view">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>个人成长链路</h3>
+              <span class="tag">按轮岗时间顺序沉淀</span>
+            </div>
+            <div class="flow" id="workflowFlow"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+                <h3>学习沉淀原则</h3>
+                <span class="tag">持续复盘</span>
+            </div>
+            <div class="strategy-grid">
+              <article>
+                <h4>先保真</h4>
+                <p>事实、时间、个人贡献和证据限制先写清楚，不把学习记录包装成业务结果。</p>
+              </article>
+              <article>
+                <h4>再提炼</h4>
+                <p>把散落材料转化为案例、能力标签、阶段心得和个人思考。</p>
+              </article>
+              <article>
+                <h4>最后复盘</h4>
+                <p>复盘自己在共创中的角色、理解变化和下一阶段想继续学习的问题。</p>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="abilities" class="view">
+          <div class="toolbar">
+            <select id="abilityLevelFilter">
+              <option value="all">全部能力等级</option>
+              <option value="能独立完成">能独立完成</option>
+              <option value="了解">了解</option>
+            </select>
+            <select id="strengthFilter">
+              <option value="all">全部证据强度</option>
+              <option value="强">强</option>
+              <option value="中强">中强</option>
+              <option value="中">中</option>
+              <option value="中弱">中弱</option>
+            </select>
+          </div>
+          <div id="abilityGrid" class="ability-grid"></div>
+        </section>
+
+        <section id="evidence" class="view">
+          <div class="toolbar">
+            <select id="evidenceStatusFilter">
+              <option value="all">全部状态</option>
+              <option value="仅可脱敏摘要">仅可脱敏摘要</option>
+              <option value="不得公开">不得公开</option>
+              <option value="仅可脱敏改写">仅可脱敏改写</option>
+            </select>
+            <button class="secondary-btn" id="showWeakEvidence">只看学习延伸</button>
+          </div>
+          <div id="evidenceTable" class="table-wrap"></div>
+        </section>
+      </main>
+
+      <aside class="detail-drawer" id="detailDrawer" aria-live="polite">
+        <button class="drawer-close" id="drawerClose" aria-label="关闭详情">×</button>
+        <p class="eyebrow" id="drawerType">详情</p>
+        <h3 id="drawerTitle">选择一项查看详情</h3>
+        <div id="drawerBody" class="drawer-body">
+          <p class="muted">点击能力卡片、证据或项目案例，可以在这里查看摘要、学习边界和个人思考。</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="summary-modal" id="summaryModal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="panel-head">
+          <h3>可复制汇报摘要</h3>
+          <button class="drawer-close" id="summaryClose" aria-label="关闭摘要">×</button>
+        </div>
+        <textarea id="summaryText" readonly></textarea>
+      </div>
+    </div>
+
+    <script src="internal-app.js"></script>
+  </body>
+</html>
