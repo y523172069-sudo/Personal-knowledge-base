@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管培生成长知识库 Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">KB</div>
+          <div>
+            <p class="eyebrow">Personal Knowledge Base</p>
+            <h1>管培生成长知识库</h1>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="主导航">
+          <button class="nav-item active" data-view="overview">总览</button>
+          <button class="nav-item" data-view="timeline">轮岗时间线</button>
+          <button class="nav-item" data-view="workflow">沉淀链路</button>
+          <button class="nav-item" data-view="abilities">能力地图</button>
+          <button class="nav-item" data-view="evidence">证据索引</button>
+          <button class="nav-item" data-view="resume">简历素材</button>
+          <button class="nav-item" data-view="demo">Demo 选题</button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="dot"></span>
+          <p>本 Demo 使用脱敏摘要，不展示公司内部原始材料。</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">2026 管培生轮岗资产沉淀</p>
+            <h2 id="viewTitle">总览</h2>
+          </div>
+          <div class="topbar-actions">
+            <div class="search-wrap">
+              <span>⌕</span>
+              <input id="globalSearch" type="search" placeholder="搜索能力、案例、证据…" />
+            </div>
+            <button id="exportSummary" class="secondary-btn">生成摘要</button>
+          </div>
+        </header>
+
+        <section id="overview" class="view active">
+          <div class="hero-card">
+            <div>
+              <p class="eyebrow">定位</p>
+              <h3>把轮岗经历转化为能力证据、简历素材和作品集 Demo。</h3>
+              <p class="muted">
+                当前知识库覆盖会议、销售、产品、AI 产品调研和需求管理等轮岗内容。这个页面用于展示“输入—整理—证据—求职资产”的完整链路。
+              </p>
+            </div>
+            <div class="hero-meter">
+              <div class="meter-ring">
+                <span id="readinessScore">68</span>
+                <small>资产成熟度</small>
+              </div>
+              <p>优先补齐上线结果、主管反馈和可公开口径。</p>
+            </div>
+          </div>
+
+          <div class="stats-grid" id="statsGrid"></div>
+
+          <div class="two-col">
+            <section class="panel">
+              <div class="panel-head">
+                <h3>当前重点案例</h3>
+                <span class="tag">可用于述职 / 面试</span>
+              </div>
+              <div id="focusCases" class="case-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>待补证据</h3>
+                <span class="tag warn">影响简历强度</span>
+              </div>
+              <ul id="gapList" class="gap-list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section id="timeline" class="view">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>轮岗时间线</h3>
+              <span class="tag">2026-03 至 2026-08</span>
+            </div>
+            <div id="timelineTrack" class="timeline-track"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>时间线判断</h3>
+              <span class="tag warn">用于述职主线</span>
+            </div>
+            <div class="strategy-grid">
+              <article>
+                <h4>3-4 月：业务理解</h4>
+                <p>从人力、会议和销售开始理解组织、客户触达和会议业务链路。</p>
+              </article>
+              <article>
+                <h4>5-6 月：能力证据形成</h4>
+                <p>销售开发信、产品调研、Jira 需求和 AI 产品分析开始形成可验证素材。</p>
+              </article>
+              <article>
+                <h4>7-8 月：补齐交付闭环</h4>
+                <p>重点补研发协作、验收上线、金融产品与增值服务材料。</p>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="workflow" class="view">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>知识库沉淀链路</h3>
+              <span class="tag">从工作记录到对外资产</span>
+            </div>
+            <div class="flow" id="workflowFlow"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>本阶段策略</h3>
+              <span class="tag">定岗前</span>
+            </div>
+            <div class="strategy-grid">
+              <article>
+                <h4>先保真</h4>
+                <p>事实、时间、个人贡献和证据限制先写清楚，不把方案目标写成业务结果。</p>
+              </article>
+              <article>
+                <h4>再提炼</h4>
+                <p>把散落材料转化为案例、能力标签、简历候选和 Demo 题目。</p>
+              </article>
+              <article>
+                <h4>最后展示</h4>
+                <p>对外只使用脱敏摘要、合成数据和方法框架，不暴露内部客户与系统信息。</p>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section id="abilities" class="view">
+          <div class="toolbar">
+            <select id="abilityLevelFilter">
+              <option value="all">全部能力等级</option>
+              <option value="能独立完成">能独立完成</option>
+              <option value="了解">了解</option>
+            </select>
+            <select id="strengthFilter">
+              <option value="all">全部证据强度</option>
+              <option value="强">强</option>
+              <option value="中强">中强</option>
+              <option value="中">中</option>
+              <option value="中弱">中弱</option>
+            </select>
+          </div>
+          <div id="abilityGrid" class="ability-grid"></div>
+        </section>
+
+        <section id="evidence" class="view">
+          <div class="toolbar">
+            <select id="evidenceStatusFilter">
+              <option value="all">全部对外状态</option>
+              <option value="仅可脱敏摘要">仅可脱敏摘要</option>
+              <option value="不得公开">不得公开</option>
+              <option value="仅可脱敏改写">仅可脱敏改写</option>
+            </select>
+            <button class="secondary-btn" id="showWeakEvidence">只看待补强</button>
+          </div>
+          <div id="evidenceTable" class="table-wrap"></div>
+        </section>
+
+        <section id="resume" class="view">
+          <div class="toolbar">
+            <select id="resumeMaturityFilter">
+              <option value="all">全部成熟度</option>
+              <option value="可用于简历">可用于简历</option>
+              <option value="候选">候选</option>
+              <option value="补充">补充</option>
+              <option value="不作为主成果">不作为主成果</option>
+            </select>
+          </div>
+          <div id="resumeCards" class="resume-grid"></div>
+        </section>
+
+        <section id="demo" class="view">
+          <div class="toolbar">
+            <select id="demoPriorityFilter">
+              <option value="all">全部优先级</option>
+              <option value="首选">首选</option>
+              <option value="优先候选">优先候选</option>
+              <option value="候选">候选</option>
+              <option value="低优先级">低优先级</option>
+            </select>
+          </div>
+          <div id="demoCards" class="demo-grid"></div>
+        </section>
+      </main>
+
+      <aside class="detail-drawer" id="detailDrawer" aria-live="polite">
+        <button class="drawer-close" id="drawerClose" aria-label="关闭详情">×</button>
+        <p class="eyebrow" id="drawerType">详情</p>
+        <h3 id="drawerTitle">选择一项查看详情</h3>
+        <div id="drawerBody" class="drawer-body">
+          <p class="muted">点击能力卡片、证据或 Demo，可以在这里查看摘要、限制和下一步。</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="summary-modal" id="summaryModal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="panel-head">
+          <h3>可复制摘要</h3>
+          <button class="drawer-close" id="summaryClose" aria-label="关闭摘要">×</button>
+        </div>
+        <textarea id="summaryText" readonly></textarea>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
