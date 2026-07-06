@@ -8,3 +8,14 @@
 # Codex 本地运行状态与线程辅助目录
 /.codex/
 /.agents/
+
+# 可重新生成的提交压缩包，不进入版本控制
+/08-Demo项目/个人知识库HTML/提交包/*.zip
+
+# 系统与办公软件临时文件
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*.tmp
+*.bak
