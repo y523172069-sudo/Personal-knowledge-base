@@ -15,7 +15,7 @@
 - 新增能力必须关联具体项目复盘和证据编号；证据不足时只能标记为“待验证”。
 - 不重写简历、不修改 Demo、不批量重评 E-001 至 E-013。
 - 不上传仅本地原始材料，不把团队成果全部归因于个人。
-- 只修改本计划列出的文件；保留当前未跟踪的 `08-Demo项目/个人知识库Sites/`，不纳入本次提交。
+- 只修改本计划列出的文件；本次在隔离工作区执行，根目录当前未跟踪的 `08-Demo项目/个人知识库Sites/` 不会进入隔离工作区，也不得纳入本次提交。
 - 所有文件编辑使用 `apply_patch`；Git 使用 `C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd\git.exe`。
 - 云端推送不包含在自动实施范围；本地提交完成后必须先询问用户是否推送。
 
@@ -146,7 +146,7 @@ $git = 'C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies
 & $git status --short
 ```
 
-Expected: `git diff --check` 无输出；状态只包含 Task 1 的三个文件以及实施前已经存在的未跟踪 Sites 目录。
+Expected: `git diff --check` 无输出；隔离工作区的状态只包含 Task 1 的三个文件，根目录原有 Sites 目录保持不变。
 
 Commit:
 
@@ -288,7 +288,7 @@ $git = 'C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies
 & $git status --short
 ```
 
-Expected: 无空白错误；新增变更只包含 Task 2 的三个文件和实施前已存在的未跟踪 Sites 目录。
+Expected: 无空白错误；隔离工作区的新增变更只包含 Task 2 的三个文件，根目录原有 Sites 目录保持不变。
 
 Commit:
 
@@ -377,7 +377,7 @@ $git = 'C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies
 & $git diff --name-only
 ```
 
-Expected: `git diff --check` 无输出；本 Task 只修改 `README.md` 和 `04-能力证据/能力地图.md`；未跟踪 Sites 目录仍未被暂存。
+Expected: `git diff --check` 无输出；本 Task 只修改 `README.md` 和 `04-能力证据/能力地图.md`；根目录原有 Sites 目录保持不变。
 
 - [ ] **Step 6: 提交 Task 3**
 
@@ -396,4 +396,4 @@ Run:
 & $git log -4 --oneline
 ```
 
-Expected: 最近三个实施提交分别覆盖长期上下文、治理模板和导航入口；工作区只保留实施前已存在的未跟踪 Sites 目录；分支显示领先远端。随后列出验证结果，并询问用户是否把本地提交推送到 GitHub。
+Expected: 最近三个实施提交分别覆盖长期上下文、治理模板和导航入口；隔离工作区保持干净；根目录原有 Sites 目录保持不变；分支显示领先远端。随后列出验证结果，并询问用户是否把本地提交推送到 GitHub。
