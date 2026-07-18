@@ -128,9 +128,10 @@ Run:
 
 ```powershell
 $source = Get-Content -Raw -Encoding UTF8 'C:\Users\Lenovo\.codex\attachments\e19caf7d-8747-4349-9d7f-972d25f87677\pasted-text.txt'
-$sourceBody = $source.Substring($source.IndexOf('## 1. 文档目的')).Trim()
+$sourceBody = $source.Substring($source.IndexOf('## 1. 文档目的')).Trim() -replace "`r`n?", "`n"
 $target = Get-Content -Raw -Encoding UTF8 '04-能力证据\个人能力边界与建模能力说明.md'
-if (-not $target.Contains($sourceBody)) { throw '能力说明原文未被完整保留' }
+$targetNormalized = $target -replace "`r`n?", "`n"
+if (-not $targetNormalized.Contains($sourceBody)) { throw '能力说明原文未被完整保留' }
 rg -n "不要自己下判断|所有新增能力必须|E-XXX|本文件不是项目证据" 'AGENTS.md' '04-能力证据\个人能力边界与建模能力说明.md'
 ```
 
@@ -336,9 +337,10 @@ Run:
 
 ```powershell
 $source = Get-Content -Raw -Encoding UTF8 'C:\Users\Lenovo\.codex\attachments\e19caf7d-8747-4349-9d7f-972d25f87677\pasted-text.txt'
-$sourceBody = $source.Substring($source.IndexOf('## 1. 文档目的')).Trim()
+$sourceBody = $source.Substring($source.IndexOf('## 1. 文档目的')).Trim() -replace "`r`n?", "`n"
 $target = Get-Content -Raw -Encoding UTF8 '04-能力证据\个人能力边界与建模能力说明.md'
-if (-not $target.Contains($sourceBody)) { throw '能力说明原文未被完整保留' }
+$targetNormalized = $target -replace "`r`n?", "`n"
+if (-not $targetNormalized.Contains($sourceBody)) { throw '能力说明原文未被完整保留' }
 if (-not (Test-Path '04-能力证据\个人能力边界与建模能力说明.md')) { throw '能力基线不存在' }
 rg -n "个人能力边界与建模能力说明|阶段性能力基线|E-XXX|用户确认" 'README.md' '04-能力证据\能力地图.md' 'AGENTS.md' '00-导航\知识库治理规则.md'
 ```
