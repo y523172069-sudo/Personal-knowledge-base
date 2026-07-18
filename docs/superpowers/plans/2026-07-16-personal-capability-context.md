@@ -394,9 +394,9 @@ Expected: `git diff --check` 无输出；本 Task 只修改 `README.md` 和 `04-
 Run:
 
 ```powershell
-& $git diff --check HEAD~3..HEAD
+& $git diff --check 7d8b750..HEAD
 & $git status --short --branch
-& $git log -4 --oneline
+& $git log --oneline 7d8b750..HEAD
 ```
 
-Expected: 最近三个实施提交分别覆盖长期上下文、治理模板和导航入口；隔离工作区保持干净；根目录原有 Sites 目录保持不变；分支显示领先远端。随后列出验证结果，并询问用户是否把本地提交推送到 GitHub。
+Expected: `7d8b750` 之后的提交覆盖长期上下文、治理模板、用户选择 B 的规则修复和导航入口；隔离工作区保持干净；根目录原有 Sites 目录保持不变；分支显示领先远端。随后列出验证结果，并询问用户是否把本地提交推送到 GitHub。
