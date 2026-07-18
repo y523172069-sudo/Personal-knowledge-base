@@ -304,6 +304,7 @@ Commit:
 **Files:**
 - Modify: `README.md`
 - Modify: `04-能力证据/能力地图.md`
+- Modify: `00-导航/知识库治理规则.md`
 
 **Interfaces:**
 - Consumes: Task 1 的能力基线和 Task 2 的准入规则
@@ -332,7 +333,15 @@ Commit:
 4. 已由用户确认证据强度和能力等级。
 ```
 
-- [ ] **Step 3: 验证新增链接、规则和原文完整性**
+- [ ] **Step 3: 在治理规则增加明确的能力基线口径**
+
+在“能力认定与证据准入”章节的执行规则之后增加：
+
+```markdown
+能力表述边界文件为 `04-能力证据/个人能力边界与建模能力说明.md`。该文件属于阶段性能力基线，不是项目证据；任何新增能力描述必须关联项目复盘和证据编号 `E-XXX`，证据强度与能力等级由用户确认。
+```
+
+- [ ] **Step 4: 验证新增链接、规则和原文完整性**
 
 Run:
 
@@ -348,7 +357,7 @@ rg -n "个人能力边界与建模能力说明|阶段性能力基线|E-XXX|用�
 
 Expected: 不抛出异常；四个长期入口或规则文件均命中预期口径。
 
-- [ ] **Step 4: 检查本次新增的 Markdown 相对链接**
+- [ ] **Step 5: 检查本次新增的 Markdown 相对链接**
 
 Run:
 
@@ -369,7 +378,7 @@ if ($failed.Count -gt 0) { $failed; throw '存在失效链接' }
 
 Expected: 无输出、无异常。
 
-- [ ] **Step 5: 检查敏感材料和提交范围**
+- [ ] **Step 6: 检查敏感材料和提交范围**
 
 Run:
 
@@ -380,16 +389,16 @@ $git = 'C:\Users\Lenovo\.cache\codex-runtimes\codex-primary-runtime\dependencies
 & $git diff --name-only
 ```
 
-Expected: `git diff --check` 无输出；本 Task 只修改 `README.md` 和 `04-能力证据/能力地图.md`；根目录原有 Sites 目录保持不变。
+Expected: `git diff --check` 无输出；本 Task 只修改 `README.md`、`04-能力证据/能力地图.md` 和 `00-导航/知识库治理规则.md`；根目录原有 Sites 目录保持不变。
 
-- [ ] **Step 6: 提交 Task 3**
+- [ ] **Step 7: 提交 Task 3**
 
 ```powershell
-& $git add -- 'README.md' '04-能力证据/能力地图.md'
+& $git add -- 'README.md' '04-能力证据/能力地图.md' '00-导航/知识库治理规则.md'
 & $git commit -m 'docs: link capability evidence baseline'
 ```
 
-- [ ] **Step 7: 运行最终验证并向用户报告，不自动推送**
+- [ ] **Step 8: 运行最终验证并向用户报告，不自动推送**
 
 Run:
 
