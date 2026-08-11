@@ -1,0 +1,17 @@
+# 统一换行符，避免不同编辑器和工具反复产生 CRLF 噪音提交
+* text=auto eol=lf
+
+# 二进制文件不做换行符转换，也不参与文本 diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.pdf binary
+*.xlsx binary
+*.xls binary
+*.pptx binary
+*.ppt binary
+*.docx binary
+*.doc binary
+*.zip binary
